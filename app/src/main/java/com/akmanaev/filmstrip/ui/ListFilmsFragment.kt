@@ -15,7 +15,9 @@ import com.akmanaev.filmstrip.expandablerecyclerview.ParentData
 import com.akmanaev.filmstrip.expandablerecyclerview.RecycleAdapter
 import com.akmanaev.filmstrip.model.NetworkResultState
 import com.akmanaev.filmstrip.model.ListFilmsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ListFilmsFragment : Fragment() {
 
     companion object {
@@ -28,7 +30,7 @@ class ListFilmsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: ListFilmsViewModel by viewModels()
+    private val viewModel by viewModels<ListFilmsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

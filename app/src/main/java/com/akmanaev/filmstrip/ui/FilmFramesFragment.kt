@@ -13,8 +13,10 @@ import com.akmanaev.filmstrip.model.FilmFramesViewModel
 import com.akmanaev.filmstrip.model.NetworkResultState
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
+@AndroidEntryPoint
 class FilmFramesFragment : Fragment() {
 
     companion object {
@@ -27,7 +29,7 @@ class FilmFramesFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val viewModel: FilmFramesViewModel by viewModels()
+    private val viewModel by viewModels<FilmFramesViewModel>()
 
     private lateinit var gestureDetector: GestureDetector
     private val swipeThreshold = 100

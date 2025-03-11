@@ -1,9 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    //id("org.jetbrains.kotlin.kapt")
     id("kotlin-kapt")
-    //id("com.google.dagger.hilt.android")
+    id("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -83,11 +83,12 @@ dependencies {
 
     implementation(libs.android.loading.animation)
     implementation(libs.glide)
-   // implementation(libs.hilt.android)
-    //kapt(libs.hilt.compiler)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 }
 
 kapt {
     useBuildCache = false
- //   correctErrorTypes = true
+    correctErrorTypes = true
 }

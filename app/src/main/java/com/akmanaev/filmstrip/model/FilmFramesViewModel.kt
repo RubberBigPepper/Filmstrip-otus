@@ -6,8 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.akmanaev.filmstrip.dto.FilmContent
 import com.akmanaev.filmstrip.io.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class FilmFramesViewModel(private val repository:Repository = Repository()) : ViewModel() {
+
+@HiltViewModel
+class FilmFramesViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     private var filmDetails: FilmContent? = null
 
@@ -16,7 +20,7 @@ class FilmFramesViewModel(private val repository:Repository = Repository()) : Vi
     private var _curFrame = MutableLiveData<OneFrame>()
 
     private fun updateCurFrame() {
-        if (filmDetails==null)
+        if (filmDetails == null)
             return
         val frame = filmDetails?.frames!![currentFrame]
         val mp3 = filmDetails?.sounds!![currentFrame]
@@ -42,10 +46,13 @@ class FilmFramesViewModel(private val repository:Repository = Repository()) : Vi
     fun fetchData(filmId: String) = liveData {
         emit(NetworkResultState.Loading)
         try {
-            if (filmDetails==null) {
-                filmDetails = repository.getFilmDetails(filmId)
-                currentFrame = 0
-                updateCurFrame()
+            val data = repository.getFilmDetails(filmId)
+            data.body()?.let{
+                if (filmDetails == null) {
+                    filmDetails = it
+                    currentFrame = 0
+                    updateCurFrame()
+                }
             }
             emit(NetworkResultState.Success(data = filmId))
         } catch (ex: Exception) {

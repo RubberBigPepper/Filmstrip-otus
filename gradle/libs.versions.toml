@@ -24,6 +24,7 @@ fragmentKtx = "1.8.6"
 navigationFragment = "2.8.8"
 navigationUiKtx = "2.8.8"
 hilt = "2.55"
+ksp = "2.1.0-1.0.29"
 
 [libraries]
 android-loading-animation = { module = "com.github.Marvel999:Android-Loading-Animation", version.ref = "androidLoadingAnimation" }
@@ -60,5 +61,6 @@ androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp-android = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 

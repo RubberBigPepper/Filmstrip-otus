@@ -1,7 +1,7 @@
 package com.akmanaev.filmstrip.dto
 
 import java.util.Date
-import com.akmanaev.filmstrip.io.DateConverter
+import com.akmanaev.filmstrip.convertor.DateConverter
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 

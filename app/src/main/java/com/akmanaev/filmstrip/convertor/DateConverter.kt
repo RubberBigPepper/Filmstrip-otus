@@ -1,4 +1,4 @@
-package com.akmanaev.filmstrip.io
+package com.akmanaev.filmstrip.convertor
 
 import com.tickaroo.tikxml.TypeConverter
 import java.text.SimpleDateFormat

@@ -1,8 +1,11 @@
 package com.akmanaev.filmstrip.io
 
-class Repository {
-    suspend fun getFilmsList() = RetrofitService.retrofitService.getFilmsForAndroidClient()
+import javax.inject.Inject
+import javax.inject.Singleton
 
-    suspend fun getFilmDetails(filmId: String) =
-        RetrofitService.retrofitService.getFilmDetails(filmId)
+@Singleton
+class Repository @Inject constructor(private val apiService: ApiService) {
+    suspend fun getFilmsList() = apiService.getFilmsForAndroidClient()
+
+    suspend fun getFilmDetails(filmId: String) = apiService.getFilmDetails(filmId)
 }
