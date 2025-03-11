@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/listFilmsFragment">
+
+    <fragment
+        android:id="@+id/listFilmsFragment"
+        android:name="com.akmanaev.filmstrip.ui.ListFilmsFragment"
+        android:label="fragment_list_films"
+        tools:layout="@layout/fragment_list_films" >
+        <action
+            android:id="@+id/action_listFilmsFragment_to_filmFramesFragment"
+            app:destination="@id/filmFramesFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmFramesFragment"
+        android:name="com.akmanaev.filmstrip.ui.FilmFramesFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_film_frames" >
+        <action
+            android:id="@+id/action_filmFramesFragment_to_listFilmsFragment"
+            app:destination="@id/listFilmsFragment" />
+        <argument
+            android:name="filmId"
+            app:argType="string"
+            android:defaultValue="default" />
+    </fragment>
+
+</navigation>
