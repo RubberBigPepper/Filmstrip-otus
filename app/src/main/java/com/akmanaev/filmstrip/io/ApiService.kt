@@ -12,5 +12,5 @@ interface ApiService {
     suspend fun getFilmsForAndroidClient(): Response<FilmsCollect>
 
     @GET("dia-android.php")
-    suspend fun getFilmDetails(@Query(value = "id", encoded = true) id: String): Response<FilmContent>
+    suspend fun getFilmContent(@Query(value = "id", encoded = true) id: String): Response<FilmContent>
 }

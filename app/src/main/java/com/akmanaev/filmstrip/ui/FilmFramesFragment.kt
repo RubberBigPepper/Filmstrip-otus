@@ -105,16 +105,17 @@ class FilmFramesFragment : Fragment() {
         viewModel.fetchData(filmId).observe(viewLifecycleOwner) { resultState ->
             when (resultState) {
                 is NetworkResultState.Success -> {
-
+                    binding.loadingAnim.visibility = View.GONE
                 }
 
                 is NetworkResultState.Loading -> {
-                    // Handle UI when API calls is loading
+                    binding.loadingAnim.visibility = View.VISIBLE
                 }
 
                 is NetworkResultState.Error -> {
                     // Handle error API calls
                     // Example: Show error message to the user
+                    binding.loadingAnim.visibility = View.GONE
                 }
             }
         }

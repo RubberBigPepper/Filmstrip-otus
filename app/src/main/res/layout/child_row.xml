@@ -22,91 +22,16 @@
         android:id="@+id/textTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textSize="20sp"
         android:ellipsize="marquee"
         android:text="Сказка о чем то"
+        android:gravity="left"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageTitle"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/textStudio"
-        />
-
-    <TextView
-        android:id="@+id/textStudioPrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:textSize="10sp"
-        android:ellipsize="marquee"
-        android:text="@string/studio"
-        app:layout_constraintStart_toEndOf="@id/imageTitle"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-
-    <TextView
-        android:id="@+id/textStudio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:textSize="10sp"
-        android:ellipsize="marquee"
-        android:text="Диафильм"
-        app:layout_constraintStart_toEndOf="@id/textStudioPrompt"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/textYearPrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:textSize="10sp"
-        android:ellipsize="marquee"
-        android:text="@string/product_year"
-        app:layout_constraintStart_toEndOf="@id/textStudio"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/textYear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:textSize="10sp"
-        android:ellipsize="marquee"
-        android:text="1990"
-        app:layout_constraintStart_toEndOf="@id/textYearPrompt"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/textAddedDatePrompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:textSize="10sp"
-        android:ellipsize="marquee"
-        android:text="@string/added_date"
-        app:layout_constraintStart_toEndOf="@id/textYear"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/textAddedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:textSize="10sp"
-        android:ellipsize="marquee"
-        android:text="1990"
-        app:layout_constraintStart_toEndOf="@id/textAddedDatePrompt"
-        app:layout_constraintTop_toBottomOf="@id/textTitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="SmallSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

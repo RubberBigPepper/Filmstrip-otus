@@ -15,6 +15,11 @@
             app:destination="@id/filmFramesFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_listFilmsFragment_to_filmDetailsFragment"
+            app:destination="@id/fillmDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/filmFramesFragment"
@@ -23,6 +28,20 @@
         tools:layout="@layout/fragment_film_frames" >
         <action
             android:id="@+id/action_filmFramesFragment_to_listFilmsFragment"
+            app:destination="@id/listFilmsFragment" />
+        <argument
+            android:name="filmId"
+            app:argType="string"
+            android:defaultValue="default" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fillmDetailsFragment"
+        android:name="com.akmanaev.filmstrip.ui.FilmDetailsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_film_details" >
+        <action
+            android:id="@+id/action_filmDetailsFragment_to_listFilmsFragment"
             app:destination="@id/listFilmsFragment" />
         <argument
             android:name="filmId"

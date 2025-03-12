@@ -16,11 +16,9 @@ class ListFilmsViewModel @Inject constructor(private val repository: Repository)
     fun fetchData() = liveData {
         emit(NetworkResultState.Loading)
         try {
-            repository.getFilmsList().body()?.let {
-                if (data == null)
-                    data = convertFilmsCollectToParentData(it)
-                emit(NetworkResultState.Success(data = data!!))
-            }
+            if (data == null)
+                data = convertFilmsCollectToParentData(repository.getFilmsList())
+            emit(NetworkResultState.Success(data = data!!))
         } catch (ex: Exception) {
             emit(NetworkResultState.Error(error = ex))
         }

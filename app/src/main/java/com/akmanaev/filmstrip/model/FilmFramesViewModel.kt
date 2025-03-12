@@ -46,8 +46,9 @@ class FilmFramesViewModel @Inject constructor(private val repository: Repository
     fun fetchData(filmId: String) = liveData {
         emit(NetworkResultState.Loading)
         try {
-            val data = repository.getFilmDetails(filmId)
-            data.body()?.let{
+            kotlinx.coroutines.delay(2000)
+            val data = repository.getFilmContent(filmId)
+            data?.let{
                 if (filmDetails == null) {
                     filmDetails = it
                     currentFrame = 0

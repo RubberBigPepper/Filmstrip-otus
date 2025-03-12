@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.akmanaev.filmstrip.R
 import com.akmanaev.filmstrip.databinding.FragmentListFilmsBinding
+import com.akmanaev.filmstrip.expandablerecyclerview.ItemActionListener
 import com.akmanaev.filmstrip.expandablerecyclerview.OnItemClickListener
 import com.akmanaev.filmstrip.expandablerecyclerview.ParentData
 import com.akmanaev.filmstrip.expandablerecyclerview.RecycleAdapter
@@ -50,9 +51,14 @@ class ListFilmsFragment : Fragment() {
                 is NetworkResultState.Success -> {
                     binding.loadingAnim.visibility = View.GONE
                     binding.expandableRecyclerView.adapter = RecycleAdapter(resultState.data,
-                        object : OnItemClickListener {
-                            override fun onItemClicked(parentData: ParentData) {
-                                showFilm(parentData.subList.first().id)
+                        object : ItemActionListener {
+
+                            override fun onItemClicked(filmId: String) {
+                                showFilmContent(filmId)
+                            }
+
+                            override fun onItemLongClicked(filmId: String) {
+                                showFilmDetails(filmId)
                             }
                         })
                 }
@@ -77,10 +83,16 @@ class ListFilmsFragment : Fragment() {
         _binding = null
     }
 
-    private fun showFilm(filmId: String) {
+    private fun showFilmContent(filmId: String) {
         val bundle = Bundle()
         bundle.putString("filmId", filmId)
         findNavController().navigate(R.id.action_listFilmsFragment_to_filmFramesFragment, bundle)
+    }
+
+    private fun showFilmDetails(filmId: String) {
+        val bundle = Bundle()
+        bundle.putString("filmId", filmId)
+        findNavController().navigate(R.id.action_listFilmsFragment_to_filmDetailsFragment, bundle)
     }
 
 }

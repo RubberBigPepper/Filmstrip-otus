@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.akmanaev.filmstrip.R
 import com.akmanaev.filmstrip.dto.FilmDetails
 import com.bumptech.glide.Glide
-import java.text.SimpleDateFormat
 
 interface OnItemClickListener {
     fun onItemClicked(parentData: ParentData)
@@ -17,7 +16,7 @@ interface OnItemClickListener {
 
 class RecycleAdapter(
     private val list: MutableList<ParentData>,
-    private val itemClickListener: OnItemClickListener
+    private val itemActionListener: ItemActionListener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -52,14 +51,16 @@ class RecycleAdapter(
             holder.apply {
                 val singleFilm = dataList.subList.first()
                 title?.text = singleFilm.title
-                year?.text = singleFilm.year
-                studio?.text = singleFilm.studio
-                addedDate?.text = SimpleDateFormat("yyyy-mm-dd").format(singleFilm.adding)
                 Glide.with(holder.itemView.context)
                     .load(singleFilm.imageUrl)
+                    .fitCenter()
                     .into(image!!)
                 itemView.setOnClickListener {
-                    itemClickListener.onItemClicked(dataList)
+                    itemActionListener.onItemClicked(singleFilm.id)
+                }
+                itemView.setOnLongClickListener {
+                    itemActionListener.onItemLongClicked(singleFilm.id)
+                    return@setOnLongClickListener true
                 }
             }
         }
