@@ -6,10 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.FilmFramesFragment">
 
-    <ImageView
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/image_slider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imageViewFrame"/>
+        app:iss_placeholder="@drawable/infinity_bar"
+        app:iss_error_image="@drawable/default_error"
+        app:iss_no_dots="false"
+        app:iss_title_background="@color/transparent"
+        app:iss_text_align="CENTER"/>
 
     <com.example.loadinganimation.LoadingAnimation
         android:id="@+id/loadingAnim"

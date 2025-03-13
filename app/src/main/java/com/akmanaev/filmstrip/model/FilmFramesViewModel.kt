@@ -13,31 +13,35 @@ import javax.inject.Inject
 @HiltViewModel
 class FilmFramesViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
-    private var filmDetails: FilmContent? = null
+    private var filmContent: FilmContent? = null
 
     private var currentFrame: Int = 0
 
     private var _curFrame = MutableLiveData<OneFrame>()
 
+    private var _frames = MutableLiveData<List<OneFrame>>()
+
     private fun updateCurFrame() {
-        if (filmDetails == null)
+        if (filmContent == null)
             return
-        val frame = filmDetails?.frames!![currentFrame]
-        val mp3 = filmDetails?.sounds!![currentFrame]
+        val frame = filmContent?.frames!![currentFrame]
+        val mp3 = filmContent?.sounds!![currentFrame]
         _curFrame.value = OneFrame(frame.imageUrl, mp3.mp3Url)
     }
+
+    val frames: LiveData<List<OneFrame>> = _frames
 
     val curFrame: LiveData<OneFrame> = _curFrame
 
     fun nextFrame() {
-        if (filmDetails == null || currentFrame >= filmDetails?.frames?.lastIndex!!)
+        if (filmContent == null || currentFrame >= filmContent?.frames?.lastIndex!!)
             return
         currentFrame++
         updateCurFrame()
     }
 
     fun prevFrame() {
-        if (filmDetails == null || currentFrame <= 0)
+        if (filmContent == null || currentFrame <= 0)
             return
         currentFrame--
         updateCurFrame()
@@ -46,13 +50,21 @@ class FilmFramesViewModel @Inject constructor(private val repository: Repository
     fun fetchData(filmId: String) = liveData {
         emit(NetworkResultState.Loading)
         try {
-            kotlinx.coroutines.delay(2000)
-            val data = repository.getFilmContent(filmId)
-            data?.let{
-                if (filmDetails == null) {
-                    filmDetails = it
+            if (filmContent == null) {
+                val data = repository.getFilmContent(filmId)
+                data?.let {
+                    filmContent = it
                     currentFrame = 0
                     updateCurFrame()
+                    val frames = mutableListOf<OneFrame>()
+                    for (index in (0..<it.frames.size)) {
+                        val oneFrame = OneFrame(
+                            it.frames[index].imageUrl,
+                            it.sounds[index].mp3Url
+                        )
+                        frames.add(oneFrame)
+                    }
+                    _frames.value = frames
                 }
             }
             emit(NetworkResultState.Success(data = filmId))

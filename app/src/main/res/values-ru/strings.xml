@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Filmstrip</string>
+
+    <string name="title">Название:</string>
+    <string name="studio">Студия:</string>
+    <string name="product_year">Год выпуска:</string>
+    <string name="added_date">Добавлено:</string>
+    <string name="cat">Категория:</string>
+</resources>

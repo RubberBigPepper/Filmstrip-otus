@@ -11,8 +11,12 @@ import androidx.fragment.app.viewModels
 import com.akmanaev.filmstrip.databinding.FragmentFilmFramesBinding
 import com.akmanaev.filmstrip.model.FilmFramesViewModel
 import com.akmanaev.filmstrip.model.NetworkResultState
+import com.akmanaev.filmstrip.model.OneFrame
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.interfaces.ItemChangeListener
+import com.denzcoskun.imageslider.models.SlideModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.abs
 
@@ -35,54 +39,10 @@ class FilmFramesFragment : Fragment() {
     private val swipeThreshold = 100
     private val swipeVelocityThreshold = 100
 
-    private val gestureListener = object :GestureDetector.OnGestureListener{
-        override fun onDown(p0: MotionEvent): Boolean {
-            return true
-        }
-
-        override fun onShowPress(p0: MotionEvent) {
-        }
-
-        override fun onSingleTapUp(p0: MotionEvent): Boolean {
-            return true
-        }
-
-        override fun onScroll(p0: MotionEvent?, p1: MotionEvent, p2: Float, p3: Float): Boolean {
-            return true
-        }
-
-        override fun onLongPress(p0: MotionEvent) {
-        }
-
-        override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
-            try {
-                val diffY = e2.y - e1?.y!!
-                val diffX = e2.x - e1?.x!!
-                if (abs(diffX) > abs(diffY)) {
-                    if (abs(diffX) > swipeThreshold && abs(velocityX) > swipeVelocityThreshold) {
-                        if (diffX > 0) {
-                            viewModel.prevFrame()
-                        }
-                        else {
-                            viewModel.nextFrame()
-                        }
-                    }
-                }
-            }
-            catch (exception: Exception) {
-                exception.printStackTrace()
-            }
-            return true
-        }
-
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // TODO: Use the ViewModel
-        gestureDetector = GestureDetector(requireContext(), gestureListener)
-
     }
 
     override fun onCreateView(
@@ -91,15 +51,8 @@ class FilmFramesFragment : Fragment() {
     ): View {
         _binding = FragmentFilmFramesBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        root.setOnTouchListener { view, motionEvent ->
-            gestureDetector.onTouchEvent(motionEvent)
-        }
-        viewModel.curFrame.observe(viewLifecycleOwner) { frame ->
-            Glide.with(this)
-                .load(frame.imageUrl)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .fitCenter()
-                .into(binding.imageViewFrame)
+        viewModel.frames.observe(viewLifecycleOwner) { frames ->
+            fillImageSlider(frames)
         }
         val filmId = requireArguments().getString("filmId")!!
         viewModel.fetchData(filmId).observe(viewLifecycleOwner) { resultState ->
@@ -125,6 +78,16 @@ class FilmFramesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun fillImageSlider(frames: List<OneFrame>){
+        val imageList = frames.map { SlideModel(it.imageUrl) }
+        binding.imageSlider.setImageList(imageList, ScaleTypes.CENTER_INSIDE)
+        binding.imageSlider.setItemChangeListener(object : ItemChangeListener {
+            override fun onItemChanged(position: Int) {
+                //play mp3 if it exists
+            }
+        })
     }
 
 }

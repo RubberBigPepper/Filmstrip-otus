@@ -81,11 +81,16 @@ dependencies {
     implementation(libs.okhttp.logging)
     implementation(libs.glide)
 
+    //https://github.com/Marvel999/Android-Loading-Animation
     implementation(libs.android.loading.animation)
+    
     implementation(libs.glide)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+
+    // https://github.com/denzcoskun/ImageSlideshow?tab=readme-ov-file
+    implementation(libs.imageslideshow)
 }
 
 kapt {
