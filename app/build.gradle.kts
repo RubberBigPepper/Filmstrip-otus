@@ -91,6 +91,8 @@ dependencies {
 
     // https://github.com/denzcoskun/ImageSlideshow?tab=readme-ov-file
     implementation(libs.imageslideshow)
+
+    testImplementation(libs.mockwebserver)
 }
 
 kapt {

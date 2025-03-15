@@ -6,17 +6,16 @@ import com.akmanaev.filmstrip.expandablerecyclerview.ParentData
 
 fun convertFilmsCollectToParentData(collect: FilmsCollect): MutableList<ParentData> {
     val result = mutableListOf<ParentData>()
-    collect.films?.let {
-        val categoriedFilms = mutableMapOf<String, MutableList<FilmDetails>>()
-        for (film in it) {
-            val cat = film.categories!!
-            if (!categoriedFilms.contains(cat))
-                categoriedFilms[cat] = mutableListOf<FilmDetails>()
-            categoriedFilms[cat]?.add(film)
-        }
-        for (cat in categoriedFilms) {
-            result.add(ParentData(parentTitle = cat.key, subList = cat.value))
-        }
+    val categoriedFilms = mutableMapOf<String, MutableList<FilmDetails>>()
+    for (film in collect.films) {
+        val cat = film.categories
+        if (!categoriedFilms.contains(cat))
+            categoriedFilms[cat] = mutableListOf<FilmDetails>()
+        categoriedFilms[cat]?.add(film)
     }
+    for (cat in categoriedFilms) {
+        result.add(ParentData(parentTitle = cat.key, subList = cat.value))
+    }
+
     return result
 }
