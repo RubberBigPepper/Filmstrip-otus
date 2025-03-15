@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Filmstrip" parent="@style/Theme.AppCompat.DayNight.NoActionBar" />
+    <style name="Theme.Filmstrip" parent="@style/Theme.Material3.Dark" />
 </resources>

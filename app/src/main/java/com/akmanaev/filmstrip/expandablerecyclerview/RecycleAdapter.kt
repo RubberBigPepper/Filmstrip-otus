@@ -119,8 +119,5 @@ class RecycleAdapter(
     class ChildViewHolder(row: View) : RecyclerView.ViewHolder(row) {
         val title: TextView? = row.findViewById(R.id.textTitle)
         val image: ImageView? = row.findViewById(R.id.imageTitle)
-        val studio: TextView? = row.findViewById(R.id.textStudio)
-        val year: TextView? = row.findViewById(R.id.textYear)
-        val addedDate: TextView? = row.findViewById(R.id.textAddedDate)
     }
 }
