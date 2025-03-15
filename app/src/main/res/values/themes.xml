@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Filmstrip" parent="@style/Theme.Material3.Dark" />
+    <style name="Theme.Filmstrip" parent="@style/Theme.Material3.Dark">
+        <item name="categoryColor">@color/purple_500</item>
+    </style>
 </resources>

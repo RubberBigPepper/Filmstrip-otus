@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.akmanaev.filmstrip.databinding.FragmentFilmFramesBinding
+import com.akmanaev.filmstrip.io.Mp3Player
 import com.akmanaev.filmstrip.model.FilmFramesViewModel
 import com.akmanaev.filmstrip.model.NetworkResultState
 import com.akmanaev.filmstrip.model.OneFrame
@@ -86,8 +87,8 @@ class FilmFramesFragment : Fragment() {
         binding.imageSlider.setItemChangeListener(object : ItemChangeListener {
             override fun onItemChanged(position: Int) {
                 //play mp3 if it exists
+                Mp3Player.playMP3(frames[position].mp3Url)
             }
         })
     }
-
 }
