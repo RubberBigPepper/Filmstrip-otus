@@ -76,6 +76,11 @@ class FilmFramesFragment : Fragment() {
         return root
     }
 
+    override fun onStop() {
+        super.onStop()
+        Mp3Player.stopPlay()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

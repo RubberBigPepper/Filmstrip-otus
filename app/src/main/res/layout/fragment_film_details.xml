@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             >
 
@@ -142,10 +142,8 @@
     </ScrollView>
 
     <com.example.loadinganimation.LoadingAnimation
+        style="@style/LoadAnimationStyle"
         android:id="@+id/loadingAnim"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="10dp"
         app:barType="@drawable/hour_glass"
         app:boldText="false"
         app:enlarge="5"

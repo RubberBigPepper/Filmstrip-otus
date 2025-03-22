@@ -1,12 +1,6 @@
 package com.akmanaev.filmstrip.io
 
 import android.media.MediaPlayer
-import android.media.MediaPlayer.OnCompletionListener
-import android.media.MediaPlayer.OnPreparedListener
-import android.util.Log
-
-
-
 
 object Mp3Player {
 

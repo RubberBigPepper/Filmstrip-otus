@@ -3,4 +3,5 @@
     <style name="Theme.Filmstrip" parent="@style/Theme.Material3.Dark">
         <item name="categoryColor">@color/purple_500</item>
     </style>
+
 </resources>

@@ -17,10 +17,8 @@
         app:iss_text_align="CENTER"/>
 
     <com.example.loadinganimation.LoadingAnimation
+        style="@style/LoadAnimationStyle"
         android:id="@+id/loadingAnim"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="10dp"
         app:barType="@drawable/color_capsule"
         app:boldText="false"
         app:enlarge="5"
